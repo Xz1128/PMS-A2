@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Harvey Norman Style Inventory Management System - Manage products, track stock, and organize your inventory efficiently.">
+  <title>Inventory Management System | Harvey Norman Style</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==================== Header ==================== -->
+  <header class="app-header">
+    <h1><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> Inventory Management System</h1>
+    <p class="subtitle">Harvey Norman Style Database — Track, Manage & Organise Your Inventory</p>
+  </header>
+
+  <!-- ==================== Navigation Bar ==================== -->
+  <nav class="nav-bar">
+    <button class="nav-btn active" id="nav-all-items" data-view="all-items"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M9 14h6"></path><path d="M9 18h6"></path><path d="M9 10h6"></path></svg> All Items</button>
+    <button class="nav-btn" id="nav-popular-items" data-view="popular-items"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #f59e0b;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Popular Items</button>
+    <button class="nav-btn" id="nav-add-item" data-view="add-item"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add Item</button>
+    <button class="nav-btn" id="nav-search" data-view="search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search</button>
+  </nav>
+
+  <!-- ==================== Main Content ==================== -->
+  <main class="main-content">
+    <!-- Message Area (success/error messages displayed here via innerHTML) -->
+    <div id="message-area"></div>
+
+    <!-- Form Container (add/edit/search forms rendered here via innerHTML) -->
+    <div id="form-container"></div>
+
+    <!-- Display Area (tables and results rendered here via innerHTML) -->
+    <div id="display-area"></div>
+  </main>
+
+  <!-- ==================== Modal Overlay (for delete confirmation) ==================== -->
+  <div id="modal-overlay"></div>
+
+  <!-- ==================== Scripts ==================== -->
+  <!-- Load compiled TypeScript files in dependency order -->
+  <script src="dist/types.js"></script>
+  <script src="dist/data.js"></script>
+  <script src="dist/validation.js"></script>
+  <script src="dist/inventory.js"></script>
+  <script src="dist/ui.js"></script>
+  <script src="dist/app.js"></script>
+
+</body>
+</html>

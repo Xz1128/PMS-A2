@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "lib": ["ES2016", "DOM"],
+      "module": "none",
+      "strict": true,
+      "esModuleInterop": true,
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "sourceMap": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true
+    },
+    "include": ["src/**/*.ts"]
+  }
+  
