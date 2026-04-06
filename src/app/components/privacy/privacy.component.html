@@ -1,0 +1,149 @@
+<!-- Privacy & Security Analysis Page -->
+<div class="page-header">
+  <h1>Privacy &amp; Security Analysis</h1>
+  <p>Key privacy and security considerations for inventory data management.</p>
+</div>
+
+<div class="content-card">
+
+  <!-- 1. Data Storage Security -->
+  <section class="topic">
+    <div class="topic-header">
+      <div class="topic-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+      </div>
+      <h2>1. Data Storage Security</h2>
+    </div>
+    <p>
+      This application stores inventory data <strong>in-memory within the browser</strong>. Data is not persisted to any
+      server or database, which means it is lost when the browser tab is closed. While this eliminates server-side data
+      breach risks, it also means there is no backup mechanism.
+    </p>
+    <ul>
+      <li><strong>No server-side storage:</strong> Data never leaves the client machine, reducing exposure to network-based attacks.</li>
+      <li><strong>Volatile memory:</strong> Data is held only in JavaScript runtime memory, not written to localStorage or cookies.</li>
+      <li><strong>Recommendation:</strong> For production use, implement encrypted server-side storage with regular backups and access logging.</li>
+    </ul>
+  </section>
+
+  <!-- 2. Input Validation & Sanitisation -->
+  <section class="topic">
+    <div class="topic-header">
+      <div class="topic-icon accent">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <polyline points="9 11 12 14 22 4"></polyline>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+        </svg>
+      </div>
+      <h2>2. Input Validation &amp; Sanitisation</h2>
+    </div>
+    <p>
+      Proper input validation is critical to preventing injection attacks and ensuring data integrity.
+    </p>
+    <ul>
+      <li><strong>Type enforcement:</strong> Numeric fields (ID, quantity, price) use <code>type="number"</code> with min/max constraints to reject alphabetic input.</li>
+      <li><strong>Required fields:</strong> All fields except Comment are validated as required before submission.</li>
+      <li><strong>Enum validation:</strong> Category, Stock Status, and Popular Item are restricted to predefined values via dropdown menus.</li>
+      <li><strong>ID uniqueness:</strong> Each Item ID is validated for uniqueness to prevent duplicate entries.</li>
+      <li><strong>XSS prevention:</strong> Angular's built-in template binding automatically sanitises output, preventing cross-site scripting attacks.</li>
+    </ul>
+  </section>
+
+  <!-- 3. Access Control -->
+  <section class="topic">
+    <div class="topic-header">
+      <div class="topic-icon warn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+      </div>
+      <h2>3. Access Control</h2>
+    </div>
+    <p>
+      Currently, the application does not implement user authentication or role-based access control (RBAC).
+      Any user with access to the application can add, modify, or delete inventory items.
+    </p>
+    <ul>
+      <li><strong>No authentication:</strong> There is no login system. In a real deployment, implement JWT-based authentication.</li>
+      <li><strong>No authorisation:</strong> All users have equal access. Consider implementing roles (e.g., Admin, Viewer, Editor).</li>
+      <li><strong>Audit trail:</strong> Changes are not logged. Implement an audit log to track who modified what and when.</li>
+      <li><strong>Session management:</strong> No session tokens are used. For production, implement secure session handling with CSRF protection.</li>
+    </ul>
+  </section>
+
+  <!-- 4. Network Security -->
+  <section class="topic">
+    <div class="topic-header">
+      <div class="topic-icon green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      </div>
+      <h2>4. Network Security</h2>
+    </div>
+    <p>
+      Since this is a client-side application with no backend API calls, network security concerns are minimal
+      in the current state. However, if the application were to be extended:
+    </p>
+    <ul>
+      <li><strong>HTTPS:</strong> All communications should be encrypted using TLS/SSL certificates.</li>
+      <li><strong>API security:</strong> If a REST API is added, implement rate limiting, input validation on the server, and API key authentication.</li>
+      <li><strong>CORS policy:</strong> Configure Cross-Origin Resource Sharing to restrict which domains can access the API.</li>
+      <li><strong>Content Security Policy (CSP):</strong> Set HTTP headers to prevent loading of untrusted resources.</li>
+    </ul>
+  </section>
+
+  <!-- 5. OWASP Considerations -->
+  <section class="topic">
+    <div class="topic-header">
+      <div class="topic-icon danger">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </div>
+      <h2>5. OWASP Top 10 Considerations</h2>
+    </div>
+    <p>
+      The following <strong>OWASP Top 10</strong> security risks are relevant to inventory management systems:
+    </p>
+    <ul>
+      <li><strong>A01 – Broken Access Control:</strong> Without authentication, access control is non-existent. Must be addressed before deployment.</li>
+      <li><strong>A03 – Injection:</strong> Angular's template engine mitigates XSS, but server-side SQL injection must be guarded against if a database is used.</li>
+      <li><strong>A05 – Security Misconfiguration:</strong> Default settings should be reviewed; error messages should not expose system internals.</li>
+      <li><strong>A07 – Identification &amp; Authentication Failures:</strong> No authentication is currently implemented. Use multi-factor authentication for sensitive operations.</li>
+      <li><strong>A09 – Security Logging &amp; Monitoring:</strong> Implement comprehensive logging for all CRUD operations and failed access attempts.</li>
+    </ul>
+  </section>
+
+  <!-- 6. Data Privacy (GDPR / Privacy Act) -->
+  <section class="topic">
+    <div class="topic-header">
+      <div class="topic-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      </div>
+      <h2>6. Data Privacy Compliance</h2>
+    </div>
+    <p>
+      If this system were to store personal data (e.g., customer names, supplier contact details), compliance with
+      privacy regulations such as the <strong>Australian Privacy Act 1988</strong> or <strong>GDPR</strong> would be required.
+    </p>
+    <ul>
+      <li><strong>Data minimisation:</strong> Only collect data that is strictly necessary for the business purpose.</li>
+      <li><strong>Right to access &amp; deletion:</strong> Provide mechanisms for data subjects to request access to or deletion of their personal data.</li>
+      <li><strong>Data retention policy:</strong> Define how long inventory and supplier data is retained and when it should be purged.</li>
+      <li><strong>Consent:</strong> Obtain explicit consent before collecting or processing personal information.</li>
+    </ul>
+  </section>
+
+</div>

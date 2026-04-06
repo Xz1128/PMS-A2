@@ -1,0 +1,40 @@
+/* ===== Privacy Page Styles ===== */
+.page-header { margin-bottom: 24px; }
+.page-header h1 { font-size: 1.6rem; color: #1e293b; }
+.page-header p { color: #64748b; margin-top: 4px; }
+
+.content-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 32px; }
+
+.topic { margin-bottom: 32px; padding-bottom: 28px; border-bottom: 1px solid #f1f5f9; }
+.topic:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.topic-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.topic-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #dbeafe; color: #2563eb; flex-shrink: 0; }
+.topic-icon.accent { background: #fef9c3; color: #a16207; }
+.topic-icon.warn { background: #fff7ed; color: #ea580c; }
+.topic-icon.green { background: #dcfce7; color: #16a34a; }
+.topic-icon.danger { background: #fef2f2; color: #dc2626; }
+
+.topic h2 { font-size: 1.15rem; color: #1e293b; }
+.topic p { color: #475569; line-height: 1.7; margin-bottom: 12px; font-size: .92rem; }
+.topic ul { list-style: none; padding: 0; }
+.topic li { padding: 8px 0 8px 24px; position: relative; color: #475569; font-size: .9rem; line-height: 1.6; }
+.topic li::before { content: ''; position: absolute; left: 0; top: 14px; width: 8px; height: 8px; border-radius: 50%; background: #93c5fd; }
+.topic code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: .82rem; color: #1e293b; }
+
+@media (max-width: 640px) {
+  .page-header { margin-bottom: 12px; }
+  .page-header h1 { font-size: 1.2rem; }
+  .page-header p { font-size: .8rem; }
+
+  .content-card { padding: 14px; border-radius: 10px; }
+  .topic { margin-bottom: 18px; padding-bottom: 16px; }
+  .topic-header { gap: 10px; margin-bottom: 10px; }
+  .topic-icon { width: 32px; height: 32px; border-radius: 6px; }
+  .topic-icon svg { width: 18px; height: 18px; }
+  .topic h2 { font-size: .95rem; }
+  .topic p { font-size: .82rem; margin-bottom: 8px; }
+  .topic li { font-size: .8rem; padding: 5px 0 5px 18px; }
+  .topic li::before { width: 6px; height: 6px; top: 12px; }
+  .topic code { font-size: .72rem; }
+}

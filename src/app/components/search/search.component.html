@@ -1,0 +1,92 @@
+<!-- Search Page -->
+<div class="page-header">
+  <h1>Search Inventory</h1>
+  <p>Find items by name and filter by category, stock status, or popularity.</p>
+</div>
+
+<div class="search-panel">
+  <div class="search-row">
+    <div class="search-main">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" [(ngModel)]="searchName" placeholder="Search by item name..." class="search-input" (keyup.enter)="onSearch()">
+    </div>
+    <button class="btn btn-primary" (click)="onSearch()">Search</button>
+    <button class="btn btn-secondary" (click)="onClear()">Clear</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-row">
+    <div class="filter-group">
+      <label>Category</label>
+      <select [(ngModel)]="filterCategory">
+        <option value="">All Categories</option>
+        <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Stock Status</label>
+      <select [(ngModel)]="filterStock">
+        <option value="">All Statuses</option>
+        <option *ngFor="let s of stockStatuses" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Popularity</label>
+      <select [(ngModel)]="filterPopular">
+        <option value="">All</option>
+        <option *ngFor="let p of popularOptions" [value]="p">{{ p }}</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- Results -->
+<div class="results-section" *ngIf="hasSearched">
+  <h2>Search Results <span class="count">({{ results.length }})</span></h2>
+
+  <div class="table-wrapper" *ngIf="results.length > 0; else noResults">
+    <table class="inv-table">
+      <thead>
+        <tr>
+          <th>ID</th><th>Item Name</th><th>Category</th><th>Qty</th>
+          <th>Price</th><th>Supplier</th><th>Status</th><th>Popular</th><th>Comment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of results">
+          <td class="cell-id" data-label="ID">{{ item.itemId }}</td>
+          <td class="cell-name" data-label="Name">{{ item.itemName }}</td>
+          <td data-label="Category"><span class="badge cat">{{ item.category }}</span></td>
+          <td class="cell-num" data-label="Qty">{{ item.quantity }}</td>
+          <td class="cell-num" data-label="Price">${{ item.price.toFixed(2) }}</td>
+          <td data-label="Supplier">{{ item.supplierName }}</td>
+          <td data-label="Status">
+            <span class="badge"
+              [class.in-stock]="item.stockStatus === 'In Stock'"
+              [class.low-stock]="item.stockStatus === 'Low Stock'"
+              [class.out-stock]="item.stockStatus === 'Out of Stock'">
+              {{ item.stockStatus }}
+            </span>
+          </td>
+          <td data-label="Popular">
+            <span class="badge" [class.pop-yes]="item.popularItem === 'Yes'" [class.pop-no]="item.popularItem === 'No'">
+              {{ item.popularItem === 'Yes' ? '★ Yes' : '—' }}
+            </span>
+          </td>
+          <td class="cell-comment" data-label="Comment">{{ item.comment || '—' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noResults>
+    <div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <p>No items match your search criteria.</p>
+    </div>
+  </ng-template>
+</div>

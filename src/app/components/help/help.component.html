@@ -1,0 +1,91 @@
+<!-- Help & FAQ Page -->
+<div class="page-header">
+  <h1>Help &amp; FAQs</h1>
+  <p>Frequently asked questions and troubleshooting guidance for the Inventory Management System.</p>
+</div>
+
+<!-- Quick Start Guide -->
+<div class="guide-card">
+  <h2>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+    </svg>
+    Quick Start Guide
+  </h2>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">1</span>
+      <div>
+        <strong>View Inventory</strong>
+        <p>Click "Inventory" in the navigation to see all items in the database.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <div>
+        <strong>Add New Items</strong>
+        <p>Click "Add Item" and fill in the required fields. Click submit to save.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <div>
+        <strong>Edit or Delete</strong>
+        <p>Enter the item name in the edit/delete fields on the Inventory page toolbar.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">4</span>
+      <div>
+        <strong>Search &amp; Filter</strong>
+        <p>Use the Search page to find items by name and apply category/status filters.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ Accordion -->
+<div class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-list">
+    <div class="faq-item" *ngFor="let faq of faqs; let i = index" [class.open]="faq.open">
+      <button class="faq-question" (click)="toggleFaq(i)">
+        <span>{{ faq.question }}</span>
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="faq-answer" *ngIf="faq.open">
+        <p>{{ faq.answer }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Troubleshooting -->
+<div class="troubleshoot-card">
+  <h2>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+    </svg>
+    Troubleshooting
+  </h2>
+  <div class="trouble-item">
+    <h3>Form won't submit</h3>
+    <p>Ensure all required fields (marked with *) are filled in correctly. Numeric fields must contain valid numbers only.</p>
+  </div>
+  <div class="trouble-item">
+    <h3>Cannot find item to edit/delete</h3>
+    <p>The item name search is case-insensitive but must match exactly. Try viewing all items first to confirm the exact name.</p>
+  </div>
+  <div class="trouble-item">
+    <h3>Duplicate ID error</h3>
+    <p>Each item must have a unique Item ID. Check the existing items table to find an unused ID number.</p>
+  </div>
+  <div class="trouble-item">
+    <h3>Page appears blank</h3>
+    <p>Try refreshing the browser. If the issue persists, open the browser developer console (F12) to check for JavaScript errors.</p>
+  </div>
+</div>
