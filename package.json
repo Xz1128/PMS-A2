@@ -1,0 +1,13 @@
+{
+  "name": "inventory-management-system",
+  "version": "1.0.0",
+  "description": "Harvey Norman Style Inventory Management System - Part 1 TypeScript App",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsc && start index.html"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}
